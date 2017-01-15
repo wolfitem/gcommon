@@ -1,2 +1,2 @@
 # gcommon
-golang common 
+golang 公共库
