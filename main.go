@@ -19,7 +19,6 @@ func main() {
 	log.Info("Info")
 	log.Warn("Warn")
 	log.Error("Error")
-	log.Error("Error2")
 
 	fmt.Println("end")
 

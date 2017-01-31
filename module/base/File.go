@@ -22,17 +22,23 @@ func WriteFile(path string, context string) error {
 	var err error
 	if CheckFileIsExist(path) {
 		file, err = os.OpenFile(path, os.O_APPEND, 0666) //打开文件
-		ErrorCheck(err)
+		CheckError(err)
 	} else {
 		file, err = os.Create(path)
-		ErrorCheck(err)
+		CheckError(err)
 	}
-
-
-	_, err = file.WriteString(context)
 	defer file.Close()
-	ErrorCheck(err)
+	_, err = file.WriteString(context)
+
+	CheckError(err)
 	return err
+}
+
+func CreateFile(path string){
+	if !CheckFileIsExist(path) {
+		_, err := os.Create(path)
+		CheckError(err)
+	}
 }
 
 /**

@@ -1,50 +1,46 @@
 package base
 
 
+//堆栈信息中过滤掉前N个
+const SKIP=3
 
-import (
-	"errors"
-)
-
-func IsTrue(v bool, msg string) error {
-	if !v {
-		return errors.New(msg)
-	}
-	return nil
+type CheckItem struct {
+	CheckFunc CheckFunc
+	Value interface{}
+	Param string
 }
 
-func IsNotEmpty(v string, param string) error {
-	if v == "" {
-		return errors.New(param + " is empty!")
+func  CheckList(items ...CheckItem) (err error){
+	for _, v := range items {
+		if err=v.CheckFunc(v.Value,v.Param);err!=nil{
+			return
+		}
 	}
-	return nil
-
+	return
 }
 
-func IsEmpty(v string, param string) error {
-	var err = IsNotEmpty(v, param)
-	if err == nil {
-		return errors.New(param + "is not empty!")
-	}
-	return nil
+func  Assert(f CheckFunc,v interface{},param string){
+	err:=f(v,param)
+	panic_stack(err)
 }
 
-func HasAnyString(v []string, param string) error {
-	if v == nil {
-		return errors.New(param + " is null!")
+func  AssertList(items ...CheckItem){
+	for _, v := range items {
+		if err:=v.CheckFunc(v.Value,v.Param);err!=nil{
+			panic_stack(err)
+			return
+		}
 	}
-	if len(v) == 0 {
-		return errors.New(param + " count must > 0!")
-	}
-	return nil
 }
 
-func HasAnyInt(v []int, param string) error {
-	if v == nil {
-		return errors.New(param + " is null!")
-	}
-	if len(v) == 0 {
-		return errors.New(param + " count must > 0!")
-	}
-	return nil
+
+func CheckError(err error){
+	panic_stack(err)
 }
+
+func panic_stack(err error){
+	if err!=nil{
+		panic(New_Skip(err.Error(),SKIP).Stack())
+	}
+}
+
