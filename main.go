@@ -9,16 +9,15 @@ import (
 
 )
 
-func main() {
-
+func init(){
 	config.Init()
 
 	log.Init()
+}
 
-	log.Debug("debug")
-	log.Info("Info")
-	log.Warn("Warn")
-	log.Error("Error")
+func main() {
+
+
 
 	fmt.Println("end")
 

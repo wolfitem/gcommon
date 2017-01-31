@@ -95,6 +95,7 @@ func IsEmpty(v interface{}, param string) (err error) {
 	return
 }
 
+//todo 这个方法在实际应用中一般不可能传递 []interface{},需要重写
 func HasAny(v []interface{}, param string) (err error)  {
 
 	if v == nil {

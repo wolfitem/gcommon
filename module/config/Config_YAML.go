@@ -52,6 +52,10 @@ func GetConfig() *yaml.File  {
 	}
 	config_file_path:=base.GetCurrentDirectory()+"/"+config_file
 
+	if !base.CheckFileIsExist(config_file_path){
+		base.CreateFile(config_file_path)
+	}
+
 	config, err := yaml.ReadFile(config_file_path)
 	if err != nil {
 		log.Fatalf("read file(%q): %s", config_file_path, err)

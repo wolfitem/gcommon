@@ -2,7 +2,6 @@ package log
 
 
 import (
-
 	"os"
 
 	log "github.com/Sirupsen/logrus"
@@ -40,6 +39,9 @@ func Init() {
 	log.SetOutput(os.Stdout)
 
 	logLevel,_:=config.GetConfig().Get("log.log_level")
+	if logLevel==""{
+		logLevel="error"
+	}
 	set_log_level(logLevel)
 
 	//添加Hook，用于本地存储日志文件或调用远程存储日志接口
