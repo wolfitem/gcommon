@@ -12,17 +12,17 @@ import (
 )
 
 const(
-	config_file="app.config"
+	config_file="goapp.config"
 
 
 )
 const config_default_context=
 `
 version: 1
-
+# 注意二级Key前面是四个空格，不能使用Tab
 log:
-	log_level: error
-	log_file_dic: $LOG_FILE_DIC
+    log_level: error
+    log_file_dic: $LOG_FILE_DIC
 
 app_setting:
 
@@ -58,7 +58,7 @@ func GetConfig() *yaml.File  {
 
 	config, err := yaml.ReadFile(config_file_path)
 	if err != nil {
-		log.Fatalf("read file(%q): %s", config_file_path, err)
+		log.Fatalf("read file error.(%q): %s", config_file_path, err)
 	}
 	version,_:=config.Get("version")
 	log.Printf("read config file : %s ,version : %s \n",config_file_path,version)
