@@ -5,11 +5,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/rifflock/lfshook"
-	"github.com/wolfitem/gcommon/module/config"
+	"wolfitem.com/gcommon/module/config"
 
-	"github.com/wolfitem/gcommon/module/base"
+	"wolfitem.com/gcommon/module/base"
 )
 
 func Debug(format string, a ...interface{}) {
@@ -17,6 +17,7 @@ func Debug(format string, a ...interface{}) {
 }
 
 func Info(format string, a ...interface{}) {
+	fmt.Printf(format, a...)
 	logrus.Infof(format, a...)
 }
 func Warn(format string, a ...interface{}) {
@@ -44,6 +45,12 @@ func Init() {
 	}
 	set_log_level(logLevel)
 
+	logrus.SetFormatter(&logrus.TextFormatter{
+		DisableColors: true,
+		FullTimestamp: true,
+	})
+
+
 	//添加Hook，用于本地存储日志文件或调用远程存储日志接口
 	add_hook()
 
@@ -58,10 +65,12 @@ func add_hook() {
 	base.CreateFile(log_file_dic + "/error.log")
 	base.CreateFile(log_file_dic + "/info.log")
 	base.CreateFile(log_file_dic + "/panic.log")
+	base.CreateFile(log_file_dic + "/debug.log")
 	logrus.AddHook(lfshook.NewHook(lfshook.PathMap{
 		logrus.ErrorLevel: log_file_dic + "/error.log",
 		logrus.InfoLevel:  log_file_dic + "/info.log",
 		logrus.PanicLevel: log_file_dic + "/panic.log",
+		logrus.DebugLevel: log_file_dic + "/debug.log",
 	}))
 
 }

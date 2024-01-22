@@ -22,3 +22,8 @@ func StringInSlice(a string, list *[]string) bool {
 func StringToSlice(text, separator string) (list []string) {
 	return strings.Split(text, separator)
 }
+
+// 去除前后空间
+func TrimSpace(s string) string {
+    return strings.Trim(s, " ")
+}
