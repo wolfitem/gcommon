@@ -5,10 +5,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/sirupsen/logrus"
 	"github.com/rifflock/lfshook"
-	"github.com/wolfitem/gcommon/module/config"
+	"github.com/sirupsen/logrus"
 	"github.com/wolfitem/gcommon/module/base"
+	"github.com/wolfitem/gcommon/module/config"
 )
 
 func Debug(format string, a ...interface{}) {
@@ -49,7 +49,6 @@ func Init() {
 		FullTimestamp: true,
 	})
 
-
 	//添加Hook，用于本地存储日志文件或调用远程存储日志接口
 	add_hook()
 
@@ -70,7 +69,7 @@ func add_hook() {
 		logrus.InfoLevel:  log_file_dic + "/info.log",
 		logrus.PanicLevel: log_file_dic + "/panic.log",
 		logrus.DebugLevel: log_file_dic + "/debug.log",
-	}))
+	}, &logrus.JSONFormatter{}))
 
 }
 
