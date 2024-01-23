@@ -1,7 +1,7 @@
 package config
 
 import (
-	base "wolfitem.com/gcommon/module/base"
+	base "github.com/wolfitem/gcommon/module/base"
 	"log"
 	"github.com/kylelemons/go-gypsy/yaml"
 

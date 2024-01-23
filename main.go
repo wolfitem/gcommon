@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"wolfitem.com/gcommon/module/config"
-	"wolfitem.com/gcommon/module/log"
+	"github.com/wolfitem/gcommon/module/config"
+	"github.com/wolfitem/gcommon/module/log"
 
 
 )

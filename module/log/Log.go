@@ -7,9 +7,8 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/rifflock/lfshook"
-	"wolfitem.com/gcommon/module/config"
-
-	"wolfitem.com/gcommon/module/base"
+	"github.com/wolfitem/gcommon/module/config"
+	"github.com/wolfitem/gcommon/module/base"
 )
 
 func Debug(format string, a ...interface{}) {

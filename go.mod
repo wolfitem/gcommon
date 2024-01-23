@@ -1,4 +1,4 @@
-module wolfitem.com/gcommon
+module github.com/wolfitem/gcommon
 
 go 1.21.6
 
