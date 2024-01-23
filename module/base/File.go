@@ -1,6 +1,5 @@
 package base
 
-
 import (
 	"io/ioutil"
 	"os"
@@ -34,7 +33,7 @@ func WriteFile(path string, context string) error {
 	return err
 }
 
-func CreateFile(path string){
+func CreateFile(path string) {
 	if !CheckFileIsExist(path) {
 		_, err := os.Create(path)
 		CheckError(err)
@@ -66,7 +65,7 @@ func CheckFileIsExist(filename string) bool {
 	return exist
 }
 
-//获取当前应用程序所在目录
+// 获取当前应用程序所在目录
 func GetCurrentDirectory() string {
 	file, _ := exec.LookPath(os.Args[0])
 
@@ -74,7 +73,7 @@ func GetCurrentDirectory() string {
 	return path
 }
 
-//获取目录下的文件夹及文件集合
+// 获取目录下的文件夹及文件集合
 func GetFilsAndDirs(path string) (files, dirs []string) {
 
 	filepath.Walk(path,
