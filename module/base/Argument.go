@@ -1,6 +1,6 @@
 package base
 
-//堆栈信息中过滤掉前N个
+// 堆栈信息中过滤掉前N个
 const SKIP = 3
 
 type CheckItem struct {
